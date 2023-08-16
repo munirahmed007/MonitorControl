@@ -6,6 +6,21 @@
 	objectVersion = 55;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		5096EEFA2A8D68E40038AA6D /* build */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 5096EEFB2A8D68E40038AA6D /* Build configuration list for PBXAggregateTarget "build" */;
+			buildPhases = (
+				5096EF002A8D68F00038AA6D /* ShellScript */,
+			);
+			dependencies = (
+				5096EEFF2A8D68EB0038AA6D /* PBXTargetDependency */,
+			);
+			name = build;
+			productName = build;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		28D1DDF2227FBE71004CB494 /* NSScreen+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28D1DDF1227FBE71004CB494 /* NSScreen+Extension.swift */; };
 		28D1DDF3227FC8C6004CB494 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 56754EB01D9A4016007BCDC5 /* Assets.xcassets */; };
@@ -59,6 +74,16 @@
 		F0A489C4279C71B200BEDFD6 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A489C3279C71B200BEDFD6 /* OnboardingViewController.swift */; };
 		FE4E0896249D584C003A50BB /* OSDUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE4E0895249D584C003A50BB /* OSDUtils.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		5096EEFE2A8D68EB0038AA6D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 56754EA31D9A4016007BCDC5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 56754EAA1D9A4016007BCDC5;
+			remoteInfo = MonitorControl;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		F06792F5200A73FA0066C438 /* [Login] Copy Helper to start at Login */ = {
@@ -419,6 +444,9 @@
 				LastUpgradeCheck = 1250;
 				ORGANIZATIONNAME = MonitorControl;
 				TargetAttributes = {
+					5096EEFA2A8D68E40038AA6D = {
+						CreatedOnToolsVersion = 14.3.1;
+					};
 					56754EAA1D9A4016007BCDC5 = {
 						CreatedOnToolsVersion = 8.0;
 						LastSwiftMigration = 1020;
@@ -465,6 +493,7 @@
 			targets = (
 				56754EAA1D9A4016007BCDC5 /* MonitorControl */,
 				F06792E6200A73460066C438 /* MonitorControlHelper */,
+				5096EEFA2A8D68E40038AA6D /* build */,
 			);
 		};
 /* End PBXProject section */
@@ -555,6 +584,23 @@
 			shellPath = "/bin/bash -euo pipefail";
 			shellScript = "version_number=\"$(/usr/libexec/PlistBuddy -c \"Print CFBundleShortVersionString\" \"${INFOPLIST_FILE/Helper/}\")\"\n\n/usr/libexec/PlistBuddy -c \"Set :CFBundleShortVersionString ${version_number}\" \"${INFOPLIST_FILE/Helper/}\"\n/usr/libexec/PlistBuddy -c \"Set :CFBundleShortVersionString ${version_number}\" \"${INFOPLIST_FILE}\"\n";
 		};
+		5096EF002A8D68F00038AA6D /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n# Type a script or drag a script file from your workspace to insert its path.\nAPP_SOURCE_PATH=\"$BUILT_PRODUCTS_DIR/MonitorControl.app\"\nDESTINATION_DIR=\"build\"\n\nrm -rf \"${PROJECT_DIR}/${DESTINATION_DIR}\"\n# Create the destination directory if it doesn't exist\nmkdir -p \"${PROJECT_DIR}/${DESTINATION_DIR}\"\n\n# Copy the app to the destination directory\nmv \"${APP_SOURCE_PATH}\" \"${PROJECT_DIR}/${DESTINATION_DIR}/MonitorControl.app\"\n";
+		};
 		6CB1BDB2253C7EBE00B52124 /* [Localization] Run BartyCrouch */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 12;
@@ -634,6 +680,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		5096EEFF2A8D68EB0038AA6D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 56754EAA1D9A4016007BCDC5 /* MonitorControl */;
+			targetProxy = 5096EEFE2A8D68EB0038AA6D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		6CDA0FCD26485A8300F52125 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
@@ -705,6 +759,22 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		5096EEFC2A8D68E40038AA6D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		5096EEFD2A8D68E40038AA6D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		56754EB61D9A4016007BCDC5 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -961,6 +1031,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		5096EEFB2A8D68E40038AA6D /* Build configuration list for PBXAggregateTarget "build" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5096EEFC2A8D68E40038AA6D /* Debug */,
+				5096EEFD2A8D68E40038AA6D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		56754EA61D9A4016007BCDC5 /* Build configuration list for PBXProject "MonitorControl" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
