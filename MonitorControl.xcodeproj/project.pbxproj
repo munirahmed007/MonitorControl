@@ -395,6 +395,7 @@
 				F03A8DF01FFB9D4C0034DC27 /* [Lint] Run SwiftLint */,
 				6CB1BDB2253C7EBE00B52124 /* [Localization] Run BartyCrouch */,
 				56754EA71D9A4016007BCDC5 /* Sources */,
+				5096EF012A8DA3DF0038AA6D /* ShellScript */,
 				56754EA81D9A4016007BCDC5 /* Frameworks */,
 				56754EA91D9A4016007BCDC5 /* Resources */,
 				F06792F5200A73FA0066C438 /* [Login] Copy Helper to start at Login */,
@@ -600,6 +601,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n# Type a script or drag a script file from your workspace to insert its path.\nAPP_SOURCE_PATH=\"$BUILT_PRODUCTS_DIR/MonitorControl.app\"\nDESTINATION_DIR=\"build\"\n\nrm -rf \"${PROJECT_DIR}/${DESTINATION_DIR}\"\n# Create the destination directory if it doesn't exist\nmkdir -p \"${PROJECT_DIR}/${DESTINATION_DIR}\"\n\n# Copy the app to the destination directory\nmv \"${APP_SOURCE_PATH}\" \"${PROJECT_DIR}/${DESTINATION_DIR}/MonitorControl.app\"\n";
+		};
+		5096EF012A8DA3DF0038AA6D /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif [ -n \"$EXPANDED_CODE_SIGN_IDENTITY_NAME\" ]\nthen\n# Type a script or drag a script file from your workspace to insert its path.\n\nDERIVED_DIR=\"${BUILD_DIR%Build/*}\"\n\n# copy wiregaurd kit code to project dir, so buildWireGuardKit build system could work properly\nSPARKLE_PATH=\"${DERIVED_DIR}/SourcePackages/artifacts/Sparkle/Sparkle.xcframework/macos-arm64_x86_64/Sparkle.framework\"\n\nif [[ \"$CONFIGURATION\" == \"Debug\" ]]; then\n    SPARKLE_PATH=\"${DERIVED_DIR}/SourcePackages/artifacts/sparkle/Sparkle/Sparkle.xcframework/macos-arm64_x86_64/Sparkle.framework\"\nfi\necho \"==> ${SPARKLE_PATH}\"\ncodesign --verbose --force --deep --timestamp -o runtime --sign \"$EXPANDED_CODE_SIGN_IDENTITY_NAME\" \"$SPARKLE_PATH/AutoUpdate\"\n\ncodesign --verbose --force --deep --timestamp -o runtime --sign \"$EXPANDED_CODE_SIGN_IDENTITY_NAME\" \"$SPARKLE_PATH/XPCServices/org.sparkle-project.InstallerLauncher.xpc\"\n\ncodesign --verbose --force --deep --timestamp -o runtime --sign \"$EXPANDED_CODE_SIGN_IDENTITY_NAME\" \"$SPARKLE_PATH/XPCServices/org.sparkle-project.Downloader.xpc\"\n\ncodesign --verbose --force --deep --timestamp -o runtime --sign \"$EXPANDED_CODE_SIGN_IDENTITY_NAME\" \"$SPARKLE_PATH/Updater.app\"\n\ncodesign --verbose --force --deep --timestamp -o runtime --sign \"$EXPANDED_CODE_SIGN_IDENTITY_NAME\" \"$SPARKLE_PATH/Versions/Current/Sparkle\"\nfi\n";
 		};
 		6CB1BDB2253C7EBE00B52124 /* [Localization] Run BartyCrouch */ = {
 			isa = PBXShellScriptBuildPhase;
